@@ -1,4 +1,4 @@
-short = '''AA
+short = """AA
 AAA
 aah
 aahed
@@ -20450,9 +20450,9 @@ zygon
 zyme
 zymes
 zymic
-ZZZ'''.split()
+ZZZ""".split()
 
-long = '''Aachen
+long = """Aachen
 aahing
 Aalborg
 Aalesund
@@ -248296,4 +248296,4 @@ Zyrtec
 zythum
 Zyuganov
 zyzzyva
-zyzzyvas'''.split()
+zyzzyvas""".split()
