@@ -18,3 +18,15 @@
 Jellyfish is an extension of the [Jelly programming language](https://github.com/DennisMitchell/jellylanguage/) created by Dennis Mitchell. Please visit his [repo](https://github.com/DennisMitchell/jellylanguage/) for the original documentation. This repo will focus on fixes and extensions as well as additional documention when I think it may be helpful.
 
 Note that the primary way I interact with Jelly(fish) is through the Jello REPL. This allows you to write Jello keywords instead of Jelly atoms. It also visually diagrams the combinator trees that are implicitly created from the monadic, dyadic and multichains. You can find the [Jello repo here](https://github.com/codereport/jello/).
+
+## Installing
+
+```bash
+git clone -q https://github.com/codereport/jellyfish.git
+cd jellyfish
+pip3 install --upgrade --user .
+```
+
+## Using
+
+The intending way of using Jellyfish is through the Jello REPL. 
