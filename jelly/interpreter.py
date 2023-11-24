@@ -16,6 +16,7 @@ random, sympy, urllib_request = lazy_import("random sympy urllib.request")
 
 code_page  = '''¡¢£¤¥¦©¬®µ½¿€ÆÇÐÑ×ØŒÞßæçðıȷñ÷øœþ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~¶''' # noqa: Q001 W605
 code_page += '''°¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ƁƇƊƑƓƘⱮƝƤƬƲȤɓƈɗƒɠɦƙɱɲƥʠɼʂƭʋȥẠḄḌẸḤỊḲḶṂṆỌṚṢṬỤṾẈỴẒȦḂĊḊĖḞĠḢİĿṀṄȮṖṘṠṪẆẊẎŻạḅḍẹḥịḳḷṃṇọṛṣṭ§Äẉỵẓȧḃċḋėḟġḣŀṁṅȯṗṙṡṫẇẋẏż«»‘’“”'''    # noqa: Q001
+code_page += 'ṕ' # jellyfish specific
 
 # Unused symbols for single-byte atoms/quicks: (quƁƘȤɦɱɲƥʠʂȥḥḳṇẉỵẓėġṅẏ
 
@@ -936,8 +937,15 @@ def reduce_simple(array, link, *init):
     array = iterable(array)
     return functools.reduce(lambda x, y: dyadic_link(link, (x, y)), array, *init)
 
+def prior(links, outmost_links, index):
+    ret = [attrdict(arity = 1)]
+    ret[0].call = lambda z: [reduce_simple(t, links[0]) for t in split_rolling(iterable(z), 2)]
+    return ret
+
 def reduce_cumulative(links, outmost_links, index):
     ret = [attrdict(arity = 1)]
+    # print(len(links))
+    # print(links)
     if len(links) == 1:
         ret[0].call = lambda t: list(itertools.accumulate(iterable(t), lambda x, y: dyadic_link(links[0], (x, y))))
     else:
@@ -2916,6 +2924,10 @@ quicks = {
     "\\": attrdict(
         condition = lambda links: links and links[0].arity,
         quicklink = reduce_cumulative
+    ),
+    "ṕ": attrdict(
+        condition = lambda links: links and links[0].arity,
+        quicklink = prior
     ),
     "Ƒ": attrdict(
         condition = lambda links: links,
