@@ -16,7 +16,7 @@ random, sympy, urllib_request = lazy_import("random sympy urllib.request")
 
 code_page  = '''¡¢£¤¥¦©¬®µ½¿€ÆÇÐÑ×ØŒÞßæçðıȷñ÷øœþ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~¶''' # noqa: Q001 W605
 code_page += '''°¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ƁƇƊƑƓƘⱮƝƤƬƲȤɓƈɗƒɠɦƙɱɲƥʠɼʂƭʋȥẠḄḌẸḤỊḲḶṂṆỌṚṢṬỤṾẈỴẒȦḂĊḊĖḞĠḢİĿṀṄȮṖṘṠṪẆẊẎŻạḅḍẹḥịḳḷṃṇọṛṣṭ§Äẉỵẓȧḃċḋėḟġḣŀṁṅȯṗṙṡṫẇẋẏż«»‘’“”'''    # noqa: Q001
-code_page += 'ṕ' # jellyfish specific
+code_page += "ṕṔ" # jellyfish specific
 
 # Unused symbols for single-byte atoms/quicks: (quƁƘȤɦɱɲƥʠʂȥḥḳṇẉỵẓėġṅẏ
 
@@ -364,6 +364,20 @@ def group_equal(array):
             groups[-1].append(x)
         else:
             groups.append([x])
+    return groups
+
+def partition(array):
+    array = iterable(array, make_digits = True)
+    groups = []
+    for x in array:
+        if x > 0:
+            if groups and (not groups[-1] or groups[-1][0] == x):
+                groups[-1].append(x)
+            else:
+                groups.append([x])
+        else:
+            if groups and groups[-1]:
+                groups.append([])
     return groups
 
 def group_lengths(array):
@@ -944,8 +958,6 @@ def prior(links, outmost_links, index):
 
 def reduce_cumulative(links, outmost_links, index):
     ret = [attrdict(arity = 1)]
-    # print(len(links))
-    # print(links)
     if len(links) == 1:
         ret[0].call = lambda t: list(itertools.accumulate(iterable(t), lambda x, y: dyadic_link(links[0], (x, y))))
     else:
@@ -2374,6 +2386,11 @@ atoms = {
         arity = 1,
         ldepth = 1,
         call = group_equal
+    ),
+    "Ṕ": attrdict(
+        arity = 1,
+        ldepth = 1,
+        call = partition
     ),
     "ŒH": attrdict(
         arity = 1,
