@@ -29,4 +29,4 @@ pip3 install --upgrade --user .
 
 ## Using
 
-The intending way of using Jellyfish is through the Jello REPL. 
+The intending way of using Jellyfish is through the [Jello REPL](https://github.com/codereport/jello/).
