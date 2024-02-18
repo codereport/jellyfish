@@ -1559,7 +1559,7 @@ atoms = {
     ),
     "Ḣ": attrdict(
         arity = 1,
-        call = lambda z: iterable(z).pop(0) if iterable(z) else 0
+        call = lambda z: next(iter(z), 0) if hasattr(z, '__iter__') else 0
     ),
     "ḣ": attrdict(
         arity = 2,
