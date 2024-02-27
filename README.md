@@ -36,6 +36,7 @@ The intending way of using Jellyfish is through the [Jello REPL](https://github.
 ### Additions
 
 * `ṕ` (Q's `prior`)
+* `ė` (dual to `odd?` i.e. `even?`)
 
 ### Changes
 
