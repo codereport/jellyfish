@@ -368,17 +368,7 @@ def group_equal(array):
 
 def partition(array):
     array = iterable(array, make_digits = True)
-    groups = []
-    for x in array:
-        if x > 0:
-            if groups and (not groups[-1] or groups[-1][0] == x):
-                groups[-1].append(x)
-            else:
-                groups.append([x])
-        else:
-            if groups and groups[-1]:
-                groups.append([])
-    return groups
+    return list(filter(lambda x: x[0] > 0, group_equal(array)))
 
 def group_lengths(array):
     array = iterable(array, make_digits = True)
