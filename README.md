@@ -37,6 +37,7 @@ The intending way of using Jellyfish is through the [Jello REPL](https://github.
 
 * `ṕ` (Q's `prior`)
 * `ė` (dual to `odd?` i.e. `even?`)
+* `①` (`bits` aka `bit_count`, `pop_count` or `ones_count`)
 
 ### Changes
 
