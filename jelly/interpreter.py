@@ -16,9 +16,9 @@ random, sympy, urllib_request = lazy_import("random sympy urllib.request")
 
 code_page  = '''¡¢£¤¥¦©¬®µ½¿€ÆÇÐÑ×ØŒÞßæçðıȷñ÷øœþ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~¶''' # noqa: Q001 W605
 code_page += '''°¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ƁƇƊƑƓƘⱮƝƤƬƲȤɓƈɗƒɠɦƙɱɲƥʠɼʂƭʋȥẠḄḌẸḤỊḲḶṂṆỌṚṢṬỤṾẈỴẒȦḂĊḊĖḞĠḢİĿṀṄȮṖṘṠṪẆẊẎŻạḅḍẹḥịḳḷṃṇọṛṣṭ§Äẉỵẓȧḃċḋėḟġḣŀṁṅȯṗṙṡṫẇẋẏż«»‘’“”'''    # noqa: Q001
-code_page += "ṕṔÉ①" # jellyfish specific
+code_page += "ṕṔÉ①ḳ" # jellyfish specific
 
-# Unused symbols for single-byte atoms/quicks: (quƁƘȤėɦɱɲƥʠʂȥḥḳṇẉỵẓġṅẏ
+# Unused symbols for single-byte atoms/quicks: (quƁƘȤėɦɱɲƥʠʂȥḥṇẉỵẓġṅẏ
 
 str_digit = "0123456789"
 str_lower = "abcdefghijklmnopqrstuvwxyz"
@@ -369,6 +369,9 @@ def group_equal(array):
 def partition(array):
     array = iterable(array, make_digits = True)
     return list(filter(lambda x: x[0] > 0, group_equal(array)))
+
+def keep(mask, array):
+    return [val for val, m in zip(array, mask) if m]
 
 def group_lengths(array):
     array = iterable(array, make_digits = True)
@@ -1613,6 +1616,10 @@ atoms = {
     "k": attrdict(
         arity = 2,
         call = lambda x, y: partition_at(x, y, border = 2)
+    ),
+    "ḳ": attrdict(
+        arity = 2,
+        call = lambda x, y: keep(x, y)
     ),
     "L": attrdict(
         arity = 1,
