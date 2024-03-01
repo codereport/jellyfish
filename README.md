@@ -39,6 +39,7 @@ The intending way of using Jellyfish is through the [Jello REPL](https://github.
 * `É` (dual to `odd?` i.e. `even?`)
 * `①` (`bits` aka `bit_count`, `pop_count` or `ones_count`)
 * `ḳ` (Uiua's `keep` and BQN/APL's `compress`/`replicate`)
+* `Ḿ` (Q's `maxs`)
 
 ### Changes
 
