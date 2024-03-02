@@ -16,9 +16,9 @@ random, sympy, urllib_request = lazy_import("random sympy urllib.request")
 
 code_page  = '''¡¢£¤¥¦©¬®µ½¿€ÆÇÐÑ×ØŒÞßæçðıȷñ÷øœþ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~¶''' # noqa: Q001 W605
 code_page += '''°¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ƁƇƊƑƓƘⱮƝƤƬƲȤɓƈɗƒɠɦƙɱɲƥʠɼʂƭʋȥẠḄḌẸḤỊḲḶṂṆỌṚṢṬỤṾẈỴẒȦḂĊḊĖḞĠḢİĿṀṄȮṖṘṠṪẆẊẎŻạḅḍẹḥịḳḷṃṇọṛṣṭ§Äẉỵẓȧḃċḋėḟġḣŀṁṅȯṗṙṡṫẇẋẏż«»‘’“”'''    # noqa: Q001
-code_page += "ṕṔÉ①ḳḾƥℙꝐ" # jellyfish specific
+code_page += "ṕṔÉ①ḳḾℙ" # jellyfish specific
 
-# Unused symbols for single-byte atoms/quicks: (quƁƘȤėɦɱɲʠʂȥḥṇẉỵẓġṅẏ
+# Unused symbols for single-byte atoms/quicks: (quƁƘȤėɦɱɲƥʠʂȥḥṇẉỵẓġṅẏ)
 
 str_digit = "0123456789"
 str_lower = "abcdefghijklmnopqrstuvwxyz"
@@ -2413,11 +2413,6 @@ atoms = {
         ldepth = 1,
         call = group_equal
     ),
-    "Ṕ": attrdict(
-        arity = 1,
-        ldepth = 1,
-        call = partition
-    ),
     "ŒH": attrdict(
         arity = 1,
         call = lambda z: split_evenly(iterable(z, make_range = True), 2)
@@ -2983,11 +2978,11 @@ quicks = {
             call = lambda x, y = None: int(x == variadic_link(links[0], (x, y)))
         )]
     ),
-    "ƥ": attrdict(
+    "Ṕ": attrdict(
         condition = lambda links: links and links[0].arity,
         quicklink = partition_with
     ),
-    "Ꝑ": attrdict(
+    "ℙ": attrdict(
         condition = lambda links: links and links[0].arity,
         quicklink = partition_by
     ),
