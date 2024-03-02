@@ -40,6 +40,10 @@ The intending way of using Jellyfish is through the [Jello REPL](https://github.
 * `①` (`bits` aka `bit_count`, `pop_count` or `ones_count`)
 * `ḳ` (Uiua's `keep` and BQN/APL's `compress`/`replicate`)
 * `Ḿ` (Q's `maxs`)
+* `Ṕ` (1/2 of Uiua's `partition` - we are calling it `part`)
+* `ƥ` (1/2 of Uiua's `partition` - we are calling it `part_with`)
+* `ℙ` (adding `part_len` to be consistent with `group` / `group_len`)
+* `Ꝑ` (adding `part_by` - a generalization of `part`)
 
 ### Changes
 

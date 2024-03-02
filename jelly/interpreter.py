@@ -16,9 +16,9 @@ random, sympy, urllib_request = lazy_import("random sympy urllib.request")
 
 code_page  = '''¡¢£¤¥¦©¬®µ½¿€ÆÇÐÑ×ØŒÞßæçðıȷñ÷øœþ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~¶''' # noqa: Q001 W605
 code_page += '''°¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ƁƇƊƑƓƘⱮƝƤƬƲȤɓƈɗƒɠɦƙɱɲƥʠɼʂƭʋȥẠḄḌẸḤỊḲḶṂṆỌṚṢṬỤṾẈỴẒȦḂĊḊĖḞĠḢİĿṀṄȮṖṘṠṪẆẊẎŻạḅḍẹḥịḳḷṃṇọṛṣṭ§Äẉỵẓȧḃċḋėḟġḣŀṁṅȯṗṙṡṫẇẋẏż«»‘’“”'''    # noqa: Q001
-code_page += "ṕṔÉ①ḳḾ" # jellyfish specific
+code_page += "ṕṔÉ①ḳḾƥℙꝐ" # jellyfish specific
 
-# Unused symbols for single-byte atoms/quicks: (quƁƘȤėɦɱɲƥʠʂȥḥṇẉỵẓġṅẏ
+# Unused symbols for single-byte atoms/quicks: (quƁƘȤėɦɱɲʠʂȥḥṇẉỵẓġṅẏ
 
 str_digit = "0123456789"
 str_lower = "abcdefghijklmnopqrstuvwxyz"
@@ -369,6 +369,20 @@ def group_equal(array):
 def partition(array):
     array = iterable(array, make_digits = True)
     return list(filter(lambda x: x[0] > 0, group_equal(array)))
+
+def partition_with(links, outmost_links, index):
+    ret = [attrdict(arity = 1)]
+    ret[0].call = lambda z: [monadic_link(links[0], t) for t in partition(z)]
+    return ret
+
+def partition_by(links, outmost_links, index):
+    ret = [attrdict(arity = 1)]
+    ret[0].call = lambda z: [list(t[1]) for t in itertools.groupby(z, lambda x: monadic_link(links[0], x)) if t[0]]
+    return ret
+
+def partition_lengths(array):
+    array = iterable(array, make_digits = True)
+    return list(len(t) for t in partition(array))
 
 def keep(mask, array):
     return [val for val, m in zip(array, mask) if m]
@@ -2515,6 +2529,10 @@ atoms = {
         arity = 1,
         call = group_lengths
     ),
+    "ℙ": attrdict(
+        arity = 1,
+        call = partition_lengths
+    ),
     "œ?": attrdict(
         arity = 2,
         ldepth = 0,
@@ -2964,6 +2982,14 @@ quicks = {
             arity = max(1, links[0].arity),
             call = lambda x, y = None: int(x == variadic_link(links[0], (x, y)))
         )]
+    ),
+    "ƥ": attrdict(
+        condition = lambda links: links and links[0].arity,
+        quicklink = partition_with
+    ),
+    "Ꝑ": attrdict(
+        condition = lambda links: links and links[0].arity,
+        quicklink = partition_by
     ),
     "ƒ": attrdict(
         condition = lambda links: links and links[0].arity,
