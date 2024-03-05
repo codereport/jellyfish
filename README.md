@@ -47,5 +47,6 @@ The intending way of using Jellyfish is through the [Jello REPL](https://github.
 
 ### Changes
 
-* `Ḣ`: head does not modify the underlying sequence
-* `Ṫ`: last does not modify the underlying sequence
+* `Ḣ`: `head` does not modify the underlying sequence
+* `Ṫ`: `last` does not modify the underlying sequence
+* `ÐṀ`: `max_by` returns a single value instead of list

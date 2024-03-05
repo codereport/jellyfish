@@ -240,7 +240,7 @@ def extremes(min_or_max, link, array):
         return []
     results = [variadic_link(link, (t, y)) for t in x]
     best = min_or_max(results)
-    return [t for t, ft in zip(x, results) if ft == best]
+    return [t for t, ft in zip(x, results) if ft == best][0]
 
 def filter_array(sand, mesh, is_in = True):
     mesh = {repr(element) for element in iterable(mesh)}
