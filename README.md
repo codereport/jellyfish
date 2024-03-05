@@ -50,4 +50,4 @@ The intended way of using Jellyfish is through the [Jello REPL](https://github.c
 * `ÐṀ`: `max_by` returns a single value instead of list
 
 ### Deletions
-* `Œɠ`: `group_len` can now be spelled `len group`
+* `Œɠ`: delete `group_len`; it can now be spelled `len group`
