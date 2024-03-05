@@ -48,3 +48,4 @@ The intending way of using Jellyfish is through the [Jello REPL](https://github.
 ### Changes
 
 * `Ḣ`: head does not modify the underlying sequence
+* `Ṫ`: last does not modify the underlying sequence

@@ -1816,7 +1816,7 @@ atoms = {
     ),
     "Ṫ": attrdict(
         arity = 1,
-        call = lambda z: iterable(z).pop() if iterable(z) else 0
+        call = lambda z: iterable(z)[-1] if iterable(z) else 0
     ),
     "t": attrdict(
         arity = 2,
