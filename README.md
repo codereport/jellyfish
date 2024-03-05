@@ -29,7 +29,7 @@ pip3 install --upgrade --user .
 
 ## Using
 
-The intending way of using Jellyfish is through the [Jello REPL](https://github.com/codereport/jello/).
+The intended way of using Jellyfish is through the [Jello REPL](https://github.com/codereport/jello/).
 
 ## Differences
 
@@ -40,9 +40,7 @@ The intending way of using Jellyfish is through the [Jello REPL](https://github.
 * `①` (`bits` aka `bit_count`, `pop_count` or `ones_count`)
 * `ḳ` (Uiua's `keep` and BQN/APL's `compress`/`replicate`)
 * `Ḿ` (Q's `maxs`)
-* `Ṕ` (1/2 of Uiua's `partition` - we are calling it `part`)
-* `ƥ` (1/2 of Uiua's `partition` - we are calling it `part_with`)
-* `ℙ` (adding `part_len` to be consistent with `group` / `group_len`)
+* `Ṕ` (Uiua's `partition` - we are calling it `part`)
 * `Ꝑ` (adding `part_by` - a generalization of `part`)
 
 ### Changes
@@ -50,3 +48,6 @@ The intending way of using Jellyfish is through the [Jello REPL](https://github.
 * `Ḣ`: `head` does not modify the underlying sequence
 * `Ṫ`: `last` does not modify the underlying sequence
 * `ÐṀ`: `max_by` returns a single value instead of list
+
+### Deletions
+* `Œɠ`: `group_len` can now be spelled `len group`
