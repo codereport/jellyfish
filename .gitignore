@@ -2,3 +2,4 @@ build
 utils/findhash2
 *.pyc
 *jellylanguage.egg*
+.vscode
