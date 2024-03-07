@@ -16,7 +16,7 @@ random, sympy, urllib_request = lazy_import("random sympy urllib.request")
 
 code_page  = '''¡¢£¤¥¦©¬®µ½¿€ÆÇÐÑ×ØŒÞßæçðıȷñ÷øœþ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~¶''' # noqa: Q001 W605
 code_page += '''°¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ƁƇƊƑƓƘⱮƝƤƬƲȤɓƈɗƒɠɦƙɱɲƥʠɼʂƭʋȥẠḄḌẸḤỊḲḶṂṆỌṚṢṬỤṾẈỴẒȦḂĊḊĖḞĠḢİĿṀṄȮṖṘṠṪẆẊẎŻạḅḍẹḥịḳḷṃṇọṛṣṭ§Äẉỵẓȧḃċḋėḟġḣŀṁṅȯṗṙṡṫẇẋẏż«»‘’“”'''    # noqa: Q001
-code_page += "ṕṔÉ①ḳḾℙ" # jellyfish specific
+code_page += "ṕṔÉ①ḳḾℙ≤≥" # jellyfish specific
 
 # Unused symbols for single-byte atoms/quicks: (quƁƘȤėɦɱɲƥʠʂȥḥṇẉỵẓġṅẏ)
 
@@ -1938,6 +1938,12 @@ atoms = {
         rdepth = 0,
         call = lambda x, y: int(x < y)
     ),
+    "≤": attrdict(
+        arity = 2,
+        ldepth = 0,
+        rdepth = 0,
+        call = lambda x, y: int(x <= y)
+    ),
     "=": attrdict(
         arity = 2,
         ldepth = 0,
@@ -1945,6 +1951,12 @@ atoms = {
         call = lambda x, y: int(x == y)
     ),
     ">": attrdict(
+        arity = 2,
+        ldepth = 0,
+        rdepth = 0,
+        call = lambda x, y: int(x > y)
+    ),
+    "≥": attrdict(
         arity = 2,
         ldepth = 0,
         rdepth = 0,

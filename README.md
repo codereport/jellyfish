@@ -42,6 +42,8 @@ The intended way of using Jellyfish is through the [Jello REPL](https://github.c
 * `Ḿ` (Q's `maxs`)
 * `Ṕ` (Uiua's `partition` - we are calling it `part`)
 * `Ꝑ` (adding `part_by` - a generalization of `part`)
+* `≤` (less than equal to)
+* `≥` (greater than equal to)
 
 ### Changes
 
