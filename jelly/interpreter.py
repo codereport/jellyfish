@@ -1960,7 +1960,7 @@ atoms = {
         arity = 2,
         ldepth = 0,
         rdepth = 0,
-        call = lambda x, y: int(x > y)
+        call = lambda x, y: int(x >= y)
     ),
     ":": attrdict(
         arity = 2,
