@@ -35,6 +35,8 @@ The intended way of using Jellyfish is through the [Jello REPL](https://github.c
 
 ### Additions
 
+#### Atoms
+
 * `ṕ` (Q's `prior`)
 * `É` (dual to `odd?` i.e. `even?`)
 * `①` (`bits` aka `bit_count`, `pop_count` or `ones_count`)
@@ -44,6 +46,10 @@ The intended way of using Jellyfish is through the [Jello REPL](https://github.c
 * `Ꝑ` (adding `part_by` - a generalization of `part`)
 * `≤` (less than equal to)
 * `≥` (greater than equal to)
+
+#### Chains
+
+* `D₂`: previously spelled `l f₁ : g₂ : r h₁` and now `g₂ f₁ h₁`
 
 ### Changes
 

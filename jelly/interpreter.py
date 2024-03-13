@@ -171,6 +171,9 @@ def dyadic_chain(chain, args):
     if chain and arities(chain[0:3]) == [2, 2, 2]:
         ret = dyadic_link(chain[0], args)
         chain = chain[1:]
+    elif chain and arities(chain[0:3]) == [2, 1, 1]:
+        ret = dyadic_link(chain[0], [monadic_link(chain[1], args[0]), monadic_link(chain[2], args[1])])
+        chain = chain[3:]
     elif leading_nilad(chain):
         ret = niladic_link(chain[0])
         chain = chain[1:]
