@@ -59,3 +59,7 @@ The intended way of using Jellyfish is through the [Jello REPL](https://github.c
 
 ### Deletions
 * `Œɠ`: delete `group_len`; it can now be spelled `len group`
+
+### Fixes
+
+* `Ẓ`: isprime was broken, now fixed
