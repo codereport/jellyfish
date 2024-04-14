@@ -2228,7 +2228,7 @@ atoms = {
     "ÆP": attrdict(
         arity = 1,
         ldepth = 0,
-        call = lambda z: int(sympy.primetest.isprime(z))
+        call = lambda z: int(sympy.isprime(z))
     ),
     "Æp": attrdict(
         arity = 1,
