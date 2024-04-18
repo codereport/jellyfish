@@ -954,6 +954,11 @@ def prior(links, outmost_links, index):
     ret[0].call = lambda z: [reduce_simple(t, links[0]) for t in split_rolling(iterable(z), 2)]
     return ret
 
+def group_op(links, outmost_links, index):
+    ret = [attrdict(arity = 1)]
+    ret[0].call = lambda z: [monadic_link(links[0], t) for t in group_equal(z)]
+    return ret
+
 def reduce_cumulative(links, outmost_links, index):
     ret = [attrdict(arity = 1)]
     if len(links) == 1:
@@ -2411,11 +2416,6 @@ atoms = {
         arity = 1,
         call = group_md
     ),
-    "Œg": attrdict(
-        arity = 1,
-        ldepth = 1,
-        call = group_equal
-    ),
     "ŒH": attrdict(
         arity = 1,
         call = lambda z: split_evenly(iterable(z, make_range = True), 2)
@@ -2969,6 +2969,10 @@ quicks = {
     "ṕ": attrdict(
         condition = lambda links: links and links[0].arity,
         quicklink = prior
+    ),
+    "Œg": attrdict(
+        condition = lambda links: links and links[0].arity,
+        quicklink = group_op
     ),
     "Ƒ": attrdict(
         condition = lambda links: links,
