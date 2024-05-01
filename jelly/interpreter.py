@@ -16,7 +16,7 @@ random, sympy, urllib_request = lazy_import("random sympy urllib.request")
 
 code_page  = '''¡¢£¤¥¦©¬®µ½¿€ÆÇÐÑ×ØŒÞßæçðıȷñ÷øœþ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~¶''' # noqa: Q001 W605
 code_page += '''°¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ƁƇƊƑƓƘⱮƝƤƬƲȤɓƈɗƒɠɦƙɱɲƥʠɼʂƭʋȥẠḄḌẸḤỊḲḶṂṆỌṚṢṬỤṾẈỴẒȦḂĊḊĖḞĠḢİĿṀṄȮṖṘṠṪẆẊẎŻạḅḍẹḥịḳḷṃṇọṛṣṭ§Äẉỵẓȧḃċḋėḟġḣŀṁṅȯṗṙṡṫẇẋẏż«»‘’“”'''    # noqa: Q001
-code_page += "ṕṔÉ①ḳḾℙ≤≥" # jellyfish specific
+code_page += "ṕṔÉ①ḳḾℙ≤≥Θ" # jellyfish specific
 
 # Unused symbols for single-byte atoms/quicks: (quƁƘȤėɦɱɲƥʠʂȥḥṇẉỵẓġṅẏ)
 
@@ -777,7 +777,9 @@ def parse_code(code):
     links = [[] for line in lines]
     for index, line in enumerate(lines):
         chains = links[index]
-        for word in regex_chain.findall(line):
+        flat_map = lambda f, xs: [y for ys in xs for y in f(ys)]
+        words = flat_map(lambda s: s[1:] if s[0] == "Θ" else [s], regex_chain.findall(line))
+        for word in words:
             chain = []
             arity, start, is_forward = chain_separators.get(word[:1], default_chain_separation)
             for token in regex_token.findall(start + word):
@@ -3208,7 +3210,8 @@ chain_separators = {
     "µ": (1, "", True),
     ")": (1, "€", True),
     "ð": (2, "", True),
-    "ɓ": (2, "", False)
+    "ɓ": (2, "", False),
+    "Θ": (-1, "", True),
 }
 default_chain_separation = (-1, "", True)
 str_arities = "".join(chain_separators.keys())
