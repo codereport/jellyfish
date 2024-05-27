@@ -47,6 +47,7 @@ The intended way of using Jellyfish is through the [Jello REPL](https://github.c
 * `≤` (less than equal to)
 * `≥` (greater than equal to)
 * `Œɠ` (previously `group_len`, this is a quick similar to `key`)
+* `Ď` (Q's `differ`)
 
 #### Chains
 
